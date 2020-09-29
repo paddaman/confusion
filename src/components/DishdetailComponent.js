@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
+import React, {Component} from 'react';
+import {Card, CardBody, CardImg, CardText, CardTitle} from 'reactstrap';
 
 class Dishdetail extends Component {
 
@@ -7,31 +7,30 @@ class Dishdetail extends Component {
         super(props)
     }
 
-    renderDish(selectedDish) {
-        if (selectedDish != null) {
+    renderDish(dish) {
+        if (dish != null) {
             return (
                 <div className="col-12 col-md-5 m-1">
                     <Card>
-                        <CardImg top src={selectedDish.image} alt={selectedDish.name} />
+                        <CardImg top src={dish.image} alt={dish.name}/>
                         <CardBody>
-                            <CardTitle>{selectedDish.name}</CardTitle>
-                            <CardText>{selectedDish.description}</CardText>
+                            <CardTitle>{dish.name}</CardTitle>
+                            <CardText>{dish.description}</CardText>
                         </CardBody>
                     </Card>
                 </div>
             );
-        }
-        else {
+        } else {
             return (
                 <div></div>
             );
         }
     }
 
-    renderComments(selectedDish) {
-        if (selectedDish != null) {
+    renderComments(dish) {
+        if (dish != null) {
 
-            const comments = selectedDish.comments.map((comment) => {
+            const comments = dish.comments.map((comment) => {
                 return (
                     <li key={comment.id}>
                         <blockquote className="blockquote">
@@ -39,7 +38,7 @@ class Dishdetail extends Component {
                                 {comment.comment}
                             </p>
                             <footer className="blockquote-footer">
-                                {comment.author}, {comment.date}
+                                {comment.author} - {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}
                             </footer>
                         </blockquote>
                     </li>
@@ -56,8 +55,7 @@ class Dishdetail extends Component {
                     </ul>
                 </div>
             );
-        }
-        else {
+        } else {
             return (
                 <div></div>
             );
@@ -65,12 +63,13 @@ class Dishdetail extends Component {
     }
 
     render() {
-        const selectedDish = this.props.selectedDish;
 
         return (
-            <div className="row">
-                {this.renderDish(selectedDish)}
-                {this.renderComments(selectedDish)}
+            <div className="container">
+                <div className="row">
+                    {this.renderDish(this.props.dish)}
+                    {this.renderComments(this.props.dish)}
+                </div>
             </div>
         );
 
