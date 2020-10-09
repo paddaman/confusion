@@ -1,6 +1,7 @@
 import React from 'react';
-import {Card, CardBody, CardImg, CardText, CardTitle, Breadcrumb, BreadcrumbItem} from 'reactstrap';
+import {Breadcrumb, BreadcrumbItem, Card, CardBody, CardImg, CardText, CardTitle} from 'reactstrap';
 import {Link} from "react-router-dom";
+import CommentForm from "./CommentFormComponent";
 
 function RenderDish({dish}) {
     return (
@@ -23,27 +24,28 @@ function RenderComments({comments}) {
                 <h4>Comments</h4>
                 <ul className="list-unstyled">
                     {comments.map((comment) => {
-                        return (
-                            <li key={comment.id}>
-                                <blockquote className="blockquote">
-                                    <p>{comment.comment}</p>
-                                    <footer className="blockquote-footer">
-                                        {comment.author} - {new Intl.DateTimeFormat('en-US', {
-                                        year: 'numeric',
-                                        month: 'short',
-                                        day: '2-digit'
-                                    }).format(new Date(Date.parse(comment.date)))}
-                                    </footer>
-                                </blockquote>
-                            </li>
-                        )
-                    }
+                            return (
+                                <li key={comment.id}>
+                                    <blockquote className="blockquote">
+                                        <p>{comment.comment}</p>
+                                        <footer className="blockquote-footer">
+                                            {comment.author} - {new Intl.DateTimeFormat('en-US', {
+                                            year: 'numeric',
+                                            month: 'short',
+                                            day: '2-digit'
+                                        }).format(new Date(Date.parse(comment.date)))}
+                                        </footer>
+                                    </blockquote>
+                                </li>
+                            )
+                        }
                     )}
                 </ul>
+                <CommentForm/>
             </div>
         )
     } else {
-        return <div></div>
+        return <div><CommentForm/></div>
     }
 }
 
