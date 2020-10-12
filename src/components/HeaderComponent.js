@@ -68,6 +68,12 @@ class Header extends Component {
                                         Contact Us
                                     </NavLink>
                                 </NavItem>
+                                <NavItem>
+                                    <NavLink className="nav-link" to="/videochat">
+                                        <span className="fa fa-video-camera fa-lg"/>
+                                        Video Chat
+                                    </NavLink>
+                                </NavItem>
                             </Nav>
                             <Nav className="ml-auto" navbar>
                                 <NavItem>

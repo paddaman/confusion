@@ -8,6 +8,7 @@ import Contact from "./ContactComponent";
 import About from "./AboutComponent";
 import {Switch, Route, Redirect, withRouter} from "react-router-dom";
 import {connect} from "react-redux";
+import WebcamCapture from "./WebcamComponent";
 
 const mapStateToProps = (state) => {
     return {
@@ -49,6 +50,7 @@ class Main extends Component {
                     <Route exact path="/menu" component={() => <Menu dishes={this.props.dishes}/>}/>
                     <Route path="/menu/:dishId" component={DishWithId}/>
                     <Route exact path="/contactus" component={Contact}/>
+                    <Route exact path="/videochat" component={WebcamCapture}/>
                     <Redirect to="/home"/>
                 </Switch>
                 <Footer/>
