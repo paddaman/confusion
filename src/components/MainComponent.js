@@ -8,7 +8,7 @@ import Contact from "./ContactComponent";
 import About from "./AboutComponent";
 import {Switch, Route, Redirect, withRouter} from "react-router-dom";
 import {connect} from "react-redux";
-import {addComment, fetchDishes, fetchComments, fetchPromos} from '../redux/ActionCreators';
+import {postComment, fetchDishes, fetchComments, fetchPromos} from '../redux/ActionCreators';
 import {actions} from "react-redux-form";
 import WebcamCapture from "./WebcamComponent";
 
@@ -22,7 +22,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    addComment: (dishId, rating, author, comment) => dispatch(addComment(dishId, rating, author, comment)),
+    postComment: (dishId, rating, author, comment) => dispatch(postComment(dishId, rating, author, comment)),
     fetchDishes: () => {dispatch(fetchDishes())},
     resetFeedbackForm: () => {dispatch(actions.reset("feedback"))},
     fetchComments: () => dispatch(fetchComments()),
@@ -57,7 +57,7 @@ class Main extends Component {
                             errorMessage={this.props.dishes.errorMessage}
                             comments={this.props.comments.comments.filter((comment) => comment.dishId === parseInt(match.params.dishId))}
                             commentsErrorMessage={this.props.comments.errorMessage}
-                            addComment={this.props.addComment}/>
+                            postComment={this.props.postComment}/>
             );
         }
 
